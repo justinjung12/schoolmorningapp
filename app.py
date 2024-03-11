@@ -90,7 +90,3 @@ def writealert():
         else:
             return '비밀번호 오류'
 
-        
-        
-
-app.run(debug=True)
