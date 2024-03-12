@@ -7,6 +7,7 @@ from flask_cors import CORS
 alerts = []
 currentalerts = {}
 test = ''
+names = []
 app = Flask(__name__)
 CORS(app)
 def current_date_yyyymmdd():
