@@ -555,48 +555,48 @@
             }
             if (arroundrainpercent == 0 && !ifrain) {//주변 강수량이 없고 그 시간 강수량이 없으면
                 console.log('주변 강수량이 없고 그 시간 강수량이 없습니다 -체육 할 확률이 매우 높습니다')
-                pepercent.innerText = ' -체육 할 확률이 매우 높습니다'
+                pepercent.innerText = ' -체육 할 확률이 매우 높습니다(강수)'
             }
             else if (arroundrainpercent == 0 && ifrain) {//주변 강수량은 없지만 그 시간 강수량이 있으면
                 if (ifrain < 2) {
                     console.log('체육 시간 주변에 강수량이 없고 체육시간에는 아주 조금의 비가 예상됩니다 -체육할 확률이 높습니다')
-                    pepercent.innerText = ' -체육할 확률이 높습니다'
+                    pepercent.innerText = ' -체육할 확률이 높습니다(강수)'
                 }
                 else if (ifrain < 6) {
                     console.log('체육 시간 주변에 강수량이 없고 체육시간에는 조금의 비가 예상됩니다 -운이좋으면 체육할 수 있습니다')
-                    pepercent.innerText = ' -운이좋으면 체육할 수 있습니다'
+                    pepercent.innerText = ' -운이좋으면 체육할 수 있습니다(강수)'
                 }
                 else if (ifrain < 10) {
                     console.log('체육 시간 주변에 강수량이 없고 체육시간에는 비가 예상됩니다 - 체육하기 힘들수 있습니다')
-                    pepercent.innerText = ' - 체육하기 힘들수 있습니다'
+                    pepercent.innerText = ' - 체육하기 힘들수 있습니다(강수)'
                 }
                 else {
                     console.log('주변강수량은 없지만 체육 시간에는 비가 많이 내립니다 -체육은 힘들 수 있습니다')
-                    pepercent.innerText = ' -체육은 힘들 수 있습니다'
+                    pepercent.innerText = ' -체육은 힘들 수 있습니다(강수)'
                 }
             }
 
             else if (arroundrainpercent > 0 && !ifrain) {//주변 강수량은 있지만 그 시간 강수량이 없으면
                 console.log('체육시간 주변에는 비가 내리지만 체육시간에는 비가 안 내립니다 -운이 좋으면 체육 할 수 있습니다')
-                pepercent.innerText = ' -운이 좋으면 체육 할 수 있습니다'
+                pepercent.innerText = ' -운이 좋으면 체육 할 수 있습니다(강수)'
             }
 
             else if (arroundrainpercent > 0 && ifrain) {//주변 강수량이 있고 그 시간 강수량이  있으면
                 if (ifrain < 2) {
                     console.log('체육 시간 주변에 강수량이 있고 체육시간에는 아주 조금의 비가 예상됩니다 -체육 못할 확률이 있습니다')
-                    pepercent.innerText = ' -체육 못할 확률이 있습니다'
+                    pepercent.innerText = ' -체육 못할 확률이 있습니다(강수)'
                 }
                 else if (ifrain < 6) {
                     console.log('체육 시간 주변에 강수량이 있고 체육시간에는 조금의 비가 예상됩니다 -체육 못할 수 있습니다')
-                    pepercent.innerText = ' -체육 못할 수 있습니다'
+                    pepercent.innerText = ' -체육 못할 수 있습니다(강수)'
                 }
                 else if (ifrain < 10) {
                     console.log('체육 시간 주변에 강수량이 있고 체육시간에는 비가 예상됩니다 -체육을 못할 확률이 높습니다')
-                    pepercent.innerText = ' -체육을 못할 확률이 높습니다'
+                    pepercent.innerText = ' -체육을 못할 확률이 높습니다(강수)'
                 }
                 else {
                     console.log('주변강수량은 있고 체육 시간에는 비가 많이 내립니다 -체육을 못할 확률이 매우 높습니다')
-                    pepercent.innerText = ' -체육을 못할 확률이 매우 높습니다'
+                    pepercent.innerText = ' -체육을 못할 확률이 매우 높습니다(강수)'
                 }
             }
 
