@@ -242,7 +242,22 @@
         const addmemobtn = document.querySelector('.memobtn')
         const container = document.querySelector('.memo')
         const currentalertbtn = document.querySelector('.lookalertbtn')
+        const currentalertbtn = document.querySelector('.lookalertbtn')
+        const looktestbtn = document.querySelector('.looktestbtn')
+        looktestbtn.addEventListener('click',()=>{
+            $.ajax({
+                url: 'http://127.0.0.1:5000/test', //데이터를 주고받을 파일 주소 입력,
+                type: 'GET',
 
+                async: false,
+                success: function (result) {
+                    swal('알림', result, 'info');
+                },
+                error: function () {
+                    console.log("error")
+                }
+            })
+        })
         if(localStorage.getItem('class') == null){
             var askclass = prompt('몇반이신가요?')
             localStorage.setItem('class',askclass)
