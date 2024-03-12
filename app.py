@@ -89,4 +89,18 @@ def writealert():
             return render_template('writealert.html')
         else:
             return '비밀번호 오류'
+@app.route('/writetest',methods=['GET', 'POST'])
+def writetest():
+    global test
+    global currentalerts
+    if request.method == 'GET':
+        return render_template('writetest.html')
+    if request.method == 'POST':
+        test = request.form['test']
+        return render_template('writetest.html')
+
+@app.route('/test',methods=['GET', 'POST'])
+def showtest():
+    return test
+app.run(debug=True)
 
