@@ -103,3 +103,25 @@ def writetest():
 def showtest():
     return test
 
+@app.route('/name',methods=['GET', 'POST'])
+def name():
+    global names
+    date = current_date_yyyymmdd()
+    names.append([request.form['name'],date])
+    print(names)
+    return 'success'
+
+@app.route('/showname',methods=['GET', 'POST'])
+def showname():
+    if request.method == 'GET':
+        return render_template('showname.html')
+    if request.method == 'POST':
+        res = []
+        if request.form['name'] != 'all':
+            for i in names: 
+                if i[0] == request.form['name']: 
+                    res.append(i) 
+            return str(res)
+        else:
+            return str(names)
+
