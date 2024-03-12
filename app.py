@@ -102,5 +102,4 @@ def writetest():
 @app.route('/test',methods=['GET', 'POST'])
 def showtest():
     return test
-app.run(debug=True)
 
