@@ -39,49 +39,49 @@ def writealert():
         return render_template('writealert.html')
     if request.method == 'POST':
         result = {}
-        if request.form['pw'] == 'wj301':
+        if request.form['pw'] == 'wj311':
             Class = '1'
             result['text'] = request.form['text']
             result['date'] = current_date_yyyymmdd()
             alerts.append(result)
             currentalerts[Class] = result['text']
             return render_template('writealert.html')
-        elif request.form['pw'] == 'wj302':
+        elif request.form['pw'] == 'wj322':
             Class = '2'
             result['text'] = request.form['text']
             result['date'] = current_date_yyyymmdd()
             alerts.append(result)
             currentalerts[Class] = result['text']
             return render_template('writealert.html')
-        elif request.form['pw'] == 'wj303':
+        elif request.form['pw'] == 'wj333':
             Class = '3'
             result['text'] = request.form['text']
             result['date'] = current_date_yyyymmdd()
             alerts.append(result)
             currentalerts[Class] = result['text']
             return render_template('writealert.html')
-        elif request.form['pw'] == 'wj304':
+        elif request.form['pw'] == 'wj344':
             Class = '4'
             result['text'] = request.form['text']
             result['date'] = current_date_yyyymmdd()
             alerts.append(result)
             currentalerts[Class] = result['text']
             return render_template('writealert.html')
-        elif request.form['pw'] == 'wj305':
+        elif request.form['pw'] == 'wj355':
             Class = '5'
             result['text'] = request.form['text']
             result['date'] = current_date_yyyymmdd()
             alerts.append(result)
             currentalerts[Class] = result['text']
             return render_template('writealert.html')
-        elif request.form['pw'] == 'wj306':
+        elif request.form['pw'] == 'wj366':
             Class = '6'
             result['text'] = request.form['text']
             result['date'] = current_date_yyyymmdd()
             alerts.append(result)
             currentalerts[Class] = result['text']
             return render_template('writealert.html')
-        elif request.form['pw'] == 'wj307':
+        elif request.form['pw'] == 'wj377':
             Class = '7'
             result['text'] = request.form['text']
             result['date'] = current_date_yyyymmdd()
