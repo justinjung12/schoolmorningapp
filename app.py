@@ -14,7 +14,7 @@ def current_date_yyyymmdd():
     # 현재 날짜를 가져옴
     current_date = datetime.now()
     # 'yyyymmdd' 형태로 포맷팅하여 문자열로 변환
-    formatted_date = current_date.strftime('%Y%m%d')
+    formatted_date = current_date.strftime('%Y%m%d%H%M')
     return str(formatted_date)
 
 
