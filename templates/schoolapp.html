@@ -193,7 +193,7 @@
             </div>
         </div>
         <div class="item item2 color1">
-            <div class="currentschedule">
+            <div class="schedule">
                 시간표
 
             </div>
@@ -382,6 +382,7 @@
 
         // 날짜 문자열 조합
         var formattedDate = year + month + day;
+        var formattedtomorrowDate = year + month + String(Number(day) + 1);//wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
 
         // 결과 출력
         var weekdays = ["일", "월", "화", "수", "목", "금", "토"];
@@ -467,8 +468,25 @@
         const timeschedule = []
         const approximatetimeschedule = [['0900', '1000'], ['1000', '1100'], ['1100', '1200'], ['1200', '1300'], ['1300', '1400'], ['1400', '1500'], ['1500', '1600']]
         const currentSchedule = schedule[weekdays[dayIndex]]
-        const currentschedulediv = document.querySelector('.currentschedule')
+        const schedulediv = document.querySelector('.schedule')
+        const tomorrowSchedule = schedule[weekdays[dayIndex+1]] //wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+        if (6 < Number(hour)) {//wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+            console.log(tomorrowSchedule)
+            schedulediv.innerText = '시간표-내일'
+            tomorrowSchedule.forEach((r) => {
+                let Div = document.createElement('div')
+                Div.innerText = r
+                schedulediv.appendChild(Div)
+            })
+        }
+        else {
 
+            currentSchedule.forEach((r) => {
+                let Div = document.createElement('div')
+                Div.innerText = r
+                schedulediv.appendChild(Div)
+            })
+        }
         currentSchedule.forEach((r) => {
             let Div = document.createElement('div')
             Div.innerText = r
