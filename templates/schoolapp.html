@@ -379,6 +379,7 @@
         var month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고, 두 자리 숫자로 만들기 위해 padStart 사용
         var day = currentDate.getDate().toString().padStart(2, '0'); // 두 자리 숫자로 만들기 위해 padStart 사용
         var dayIndex = currentDate.getDay();
+        var hour = currentDate.getHours();//wwwwwwwwwwwwwwwwwwwww
 
         // 날짜 문자열 조합
         var formattedDate = year + month + day;
