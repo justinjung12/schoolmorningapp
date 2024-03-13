@@ -243,7 +243,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
-        const SERVER_URL = 'https://port-0-schoolmorningapp-17xco2lltmrmrpc.sel5.cloudtype.app'
+        const SERVER_URL = 'http://127.0.0.1:5000'
         const memoInput = document.querySelector('.memoinput')
         const addmemobtn = document.querySelector('.memobtn')
         const container = document.querySelector('.memo')
@@ -264,12 +264,14 @@
                 }
             })
         })
-        if (localStorage.getItem('class') == null) {
-            var askclass = prompt('몇반이신가요?')
+        if (localStorage.getItem('class') == null || localStorage.getItem('name') == null || localStorage.getItem('grade') == null) {
+            var grade = prompt('몇 학년이신가요?')
+            var askclass = prompt('몇 반이신가요?')
             var username = prompt('이름이 무엇인가요?')
+            localStorage.setItem('grade', grade)
             localStorage.setItem('name', username)
             localStorage.setItem('class', askclass)
-
+            
         }
         $.ajax({
             url: `${SERVER_URL}/currentalert`, //데이터를 주고받을 파일 주소 입력,
@@ -412,7 +414,7 @@
         }
         $.ajax({
 
-            url: ` https://open.neis.go.kr/hub/misTimetable?KEY=f6e86c64f5744a28a326715cb9045d9b&Type=json&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE=J10&SD_SCHUL_CODE=7751012&ALL_TI_YMD=${scheduledate}&AY=2024&SEM=1&GRADE=3&CLASS_NM=${localStorage.getItem('class')}`, //데이터를 주고받을 파일 주소 입력,
+            url: ` https://open.neis.go.kr/hub/misTimetable?KEY=f6e86c64f5744a28a326715cb9045d9b&Type=json&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE=J10&SD_SCHUL_CODE=7751012&ALL_TI_YMD=${scheduledate}&AY=2024&SEM=1&GRADE=${localStorage.getItem('grade')}&CLASS_NM=${localStorage.getItem('class')}`, //데이터를 주고받을 파일 주소 입력,
             data: 'json',
 
             success: function (result) {
@@ -609,7 +611,14 @@
             var dateA = new Date("2024-04-29");
             var dateB = new Date("2024-07-01");
             var dateC = new Date("2024-09-30");
-            var dateD = new Date("2024-12-11");
+            if(localStorage.getItem('grade') == '3'){
+                var dateD = new Date("2024-11-21");
+            }
+            else{
+                var dateD = new Date("2024-12-11");
+
+            }
+            
 
             var names = ['1학기 중간', '1학기 기말', '2학기 중간', '2학기 기말']
             var dates = [dateA, dateB, dateC, dateD];
