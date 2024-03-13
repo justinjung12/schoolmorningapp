@@ -415,7 +415,6 @@
             url: ` https://open.neis.go.kr/hub/misTimetable?KEY=f6e86c64f5744a28a326715cb9045d9b&Type=json&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE=J10&SD_SCHUL_CODE=7751012&ALL_TI_YMD=${scheduledate}&AY=2024&SEM=1&GRADE=3&CLASS_NM=${localStorage.getItem('class')}`, //데이터를 주고받을 파일 주소 입력,
             data: 'json',
 
-            async: false,
             success: function (result) {
                 JSON.parse(result)['misTimetable'][1]['row'].forEach(r => {
                     Schedule.push(r['ITRT_CNTNT'])
