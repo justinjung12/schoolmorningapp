@@ -112,10 +112,10 @@ def name():
     print(names)
     return 'success'
 
-@app.route('/showname',methods=['GET', 'POST'])
+@app.route('/shownames',methods=['GET', 'POST'])
 def showname():
     if request.method == 'GET':
-        return render_template('showname.html')
+        return render_template('shownames.html')
     if request.method == 'POST':
         res = []
         if request.form['name'] != 'all':
