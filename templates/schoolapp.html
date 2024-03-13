@@ -260,7 +260,7 @@
             })
         })
         if(localStorage.getItem('class') == null){
-            var askclass = prompt('몇반이신가요?')
+            var askclass = prompt('몇반이신가요? (입력예 3-3반이면 3(반이름 만 입력) ')
             var username = prompt('이름이 무엇인가요?')
             localStorage.setItem('name', username)
             localStorage.setItem('class', askclass)
