@@ -137,6 +137,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
         }
+
         .looktestbtn {
             width: 100px;
             height: 50px;
@@ -170,12 +171,14 @@
         .pepercent {
             margin-left: 10px;
         }
-        .weather a{
+
+        .weather a {
             text-decoration: none;
             color: black;
             padding: 10px;
         }
-        .weather{
+
+        .weather {
             background-color: #78FF96;
             border: none;
             border-top-right-radius: 8px;
@@ -195,15 +198,16 @@
         <div class="item item2 color1">
             <div class="schedule">
                 시간표
-
             </div>
         </div>
         <div class="item item3 color2">
             <div>
                 <div class="pepercent"></div>
-                <div><button class="weather"><a href="https://www.weather.go.kr/w/index.do#dong/4146356000/37.2864833744111/127.113366963771/%EA%B2%BD%EA%B8%B0%20%EC%9A%A9%EC%9D%B8%EC%8B%9C%EA%B8%B0%ED%9D%A5%EA%B5%AC%20%EC%8B%A0%EA%B0%88%EB%8F%99/SCH/%EA%B8%B0%ED%9D%A5%EB%8F%84%EC%84%9C%EA%B4%80%20%EC%A7%80%EC%83%81%20%EC%A3%BC%EC%B0%A8%EC%9E%A5">날씨-클릭</a></button></div>
+                <div><button class="weather"><a
+                            href="https://www.weather.go.kr/w/index.do#dong/4146356000/37.2864833744111/127.113366963771/%EA%B2%BD%EA%B8%B0%20%EC%9A%A9%EC%9D%B8%EC%8B%9C%EA%B8%B0%ED%9D%A5%EA%B5%AC%20%EC%8B%A0%EA%B0%88%EB%8F%99/SCH/%EA%B8%B0%ED%9D%A5%EB%8F%84%EC%84%9C%EA%B4%80%20%EC%A7%80%EC%83%81%20%EC%A3%BC%EC%B0%A8%EC%9E%A5">날씨-클릭</a></button>
+                </div>
             </div>
-            
+
         </div>
         <div class="item item4 color1">
             <div>
@@ -235,21 +239,23 @@
     <button class="looktestbtn color1">시험 범위 보기</button>
 
 
-
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
+        const SERVER_URL = 'http://127.0.0.1:5000'
         const memoInput = document.querySelector('.memoinput')
         const addmemobtn = document.querySelector('.memobtn')
         const container = document.querySelector('.memo')
         const currentalertbtn = document.querySelector('.lookalertbtn')
         const looktestbtn = document.querySelector('.looktestbtn')
-        looktestbtn.addEventListener('click',()=>{
+
+        looktestbtn.addEventListener('click', () => {
             $.ajax({
-                url: 'https://port-0-schoolmorningapp-17xco2lltmrmrpc.sel5.cloudtype.app/test', //데이터를 주고받을 파일 주소 입력,
+                url: `${SERVER_URL}/test`, //데이터를 주고받을 파일 주소 입력,
                 type: 'GET',
 
+                async: false,
                 success: function (result) {
                     swal('알림', result, 'info');
                 },
@@ -258,18 +264,18 @@
                 }
             })
         })
-        if(localStorage.getItem('class') == null){
-            var askclass = prompt('몇반이신가요? (입력예 3-3반이면 3(반이름 만 입력) ')
+        if (localStorage.getItem('class') == null) {
+            var askclass = prompt('몇반이신가요?')
             var username = prompt('이름이 무엇인가요?')
             localStorage.setItem('name', username)
             localStorage.setItem('class', askclass)
 
         }
         $.ajax({
-            url: 'https://port-0-schoolmorningapp-17xco2lltmrmrpc.sel5.cloudtype.app/currentalert', //데이터를 주고받을 파일 주소 입력,
-            type:'POST',
+            url: `${SERVER_URL}/currentalert`, //데이터를 주고받을 파일 주소 입력,
+            type: 'POST',
             data: {
-                class:localStorage.getItem('class')
+                class: localStorage.getItem('class')
             },
             async: false,
             success: function (result) {
@@ -279,8 +285,9 @@
                 console.log("error")
             }
         })
+
         $.ajax({
-            url: 'https://port-0-schoolmorningapp-17xco2lltmrmrpc.sel5.cloudtype.app/name', //데이터를 주고받을 파일 주소 입력,
+            url: `${SERVER_URL}/name`, //데이터를 주고받을 파일 주소 입력,
             type: 'POST',
             data: {
                 name: localStorage.getItem('name')
@@ -293,14 +300,15 @@
                 console.log("error")
             }
         })
-        
+
+
 
         currentalertbtn.addEventListener('click', () => {
             $.ajax({
-                url: 'https://port-0-schoolmorningapp-17xco2lltmrmrpc.sel5.cloudtype.app/currentalert', //데이터를 주고받을 파일 주소 입력,
-                type:'POST',
+                url: `${SERVER_URL}/currentalert`, //데이터를 주고받을 파일 주소 입력,
+                type: 'POST',
                 data: {
-                    class:localStorage.getItem('class')
+                    class: localStorage.getItem('class')
                 },
                 async: false,
                 success: function (result) {
@@ -309,7 +317,7 @@
                 error: function () {
                     console.log("error")
                 }
-        })
+            })
         })
         function plusmemolocalstorage(writememo) {
             let array
@@ -387,112 +395,52 @@
         // 결과 출력
         var weekdays = ["일", "월", "화", "수", "목", "금", "토"];
 
-        const schedule1 = {
-            '월': ['국어', '영어', '체육', '역사', '미술', '기가'],
-            '화': ['스포츠', '역사', '과학', '수학', '사회', '영어', '동아리'],
-            '수': ['음악', '국어', '기가', '사회', '영어', '과학'],
-            '목': ['기가', '과학', '미술', '역사', '국어', '수학', '체육'],
-            '금': ['체육', '사회', '기가', '수학', '국어', '영어']
-        }
-        const schedule2 = {
-            '월': ['영어', '미술', '국어', '과학', '기가', '사회'],
-            '화': ['스포츠', '국어', '영어', '체육', '기가', '역사', '동아리'],
-            '수': ['사회', '수학', '국어', '체육', '역사', '영어'],
-            '목': ['기가', '역사', '영어', '사회', '과학', '체육', '수학'],
-            '금': ['음악', '국어', '수학', '기가', '과학', '미술']
-        }
-        const schedule3 = {
-            '월': ['체육', '과학', '역사', '수학', '기가', '국어'],
-            '화': ['스포츠', '영어', '국어', '기가', '체육', '사회', '동아리'],
-            '수': ['수학', '영어', '미술', '국어', '사회', '음악'],
-            '목': ['체육', '수학', '국어', '역사', '과학', '영어', '기가'],
-            '금': ['사회', '미술', '과학', '영어', '기가', '역사']
-        }
-        const schedule4 = {
-            '월': ['국어', '수학', '사회', '영어', '음악', '미술'],
-            '화': ['스포츠', '과학', '기가', '국어', '역사', '체육', '동아리'],
-            '수': ['역사', '기가', '영어', '사회', '수학', '체육'],
-            '목': ['과학', '사회', '기가', '기가', '미술', '국어', '영어'],
-            '금': ['과학', '역사', '영어', '국어', '체육', '수학']
-        }
-        const schedule5 = {
-            '월': ['수학', '음악', '기가', '국어', '체육', '영어'],
-            '화': ['스포츠', '역사', '사회', '과학', '영어', '국어', '동아리'],
-            '수': ['기가', '과학', '체육', '미술', '국어', '수학'],
-            '목': ['사회', '국어', '기가', '영어', '역사', '과학', '미술'],
-            '금': ['영어', '수학', '체육', '역사', '사회', '기가']
-        }
-        const schedule6 = {
-            '월': ['수학', '과학', '기가', '체육', '역사', '국어'],
-            '화': ['스포츠', '사회', '국어', '영어', '과학', '기가', '동아리'],
-            '수': ['미술', '사회', '역사', '수학', '기가', '영어'],
-            '목': ['영어', '미술', '수학', '국어', '사회', '기가', '체육'],
-            '금': ['국어', '과학', '역사', '체육', '영어', '음악']
-        }
-        const schedule7 = {
-            '월': ['영어', '기가', '미술', '사회', '과학', '역사'],
-            '화': ['스포츠', '수학', '역사', '국어', '사회', '체육', '동아리'],
-            '수': ['체육', '음악', '과학', '영어', '기가', '국어'],
-            '목': ['역사', '체육', '과학', '수학', '영어', '기가', '국어'],
-            '금': ['미술', '영어', '사회', '국어', '수학', '기가']
-        }
-        if (localStorage.getItem('class') == '1'){
-            var schedule = schedule1
 
-        }
-        if (localStorage.getItem('class') == '2'){
-            var schedule = schedule2
-
-        }
-        if (localStorage.getItem('class') == '3'){
-            var schedule = schedule3
-
-        }
-        if (localStorage.getItem('class') == '4'){
-            var schedule = schedule4
-
-        }
-        if (localStorage.getItem('class') == '5'){
-            var schedule = schedule5
-
-        }
-        if (localStorage.getItem('class') == '6'){
-            var schedule = schedule6
-
-        }
-        if (localStorage.getItem('class') == '7'){
-            var schedule = schedule7
-
-        }
 
         const timeschedule = []
         const approximatetimeschedule = [['0900', '1000'], ['1000', '1100'], ['1100', '1200'], ['1200', '1300'], ['1300', '1400'], ['1400', '1500'], ['1500', '1600']]
-        const currentSchedule = schedule[weekdays[dayIndex]]
+        let Schedule = []
         const schedulediv = document.querySelector('.schedule')
-        const tomorrowSchedule = schedule[weekdays[dayIndex+1]] //wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+        let schedules = []
+        var scheduledate
         if (6 < Number(hour)) {//wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
-            console.log(tomorrowSchedule)
-            schedulediv.innerText = '시간표-내일'
-            tomorrowSchedule.forEach((r) => {
-                let Div = document.createElement('div')
-                Div.innerText = r
-                schedulediv.appendChild(Div)
-            })
+            scheduledate = formattedtomorrowDate
         }
         else {
 
-            currentSchedule.forEach((r) => {
-                let Div = document.createElement('div')
-                Div.innerText = r
-                schedulediv.appendChild(Div)
-            })
+            scheduledate = formattedDate
         }
+        $.ajax({
 
+            url: ` https://open.neis.go.kr/hub/misTimetable?KEY=f6e86c64f5744a28a326715cb9045d9b&Type=json&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE=J10&SD_SCHUL_CODE=7751012&ALL_TI_YMD=${scheduledate}&AY=2024&SEM=1&GRADE=3&CLASS_NM=${localStorage.getItem('class')}`, //데이터를 주고받을 파일 주소 입력,
+            data: 'json',
 
+            async: false,
+            success: function (result) {
+                JSON.parse(result)['misTimetable'][1]['row'].forEach(r => {
+                    Schedule.push(r['ITRT_CNTNT'])
+                    let Div = document.createElement('div')
+                    Div.innerText = r['ITRT_CNTNT']
+                    schedulediv.appendChild(Div)
+                });
+            },
+            error: function () {
+                console.log("error")
+            }
+        })
 
         let writename
         let name
-        const lunchdate = formattedDate
+        let lunchdate
+        if (6 < Number(hour)) {//wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+            lunchdate = formattedtomorrowDate
+            console.log('내일 기준')
+            document.querySelector('.lunch').innerText = '점심메뉴-내일'
+        }
+        else {
+            lunchdate = formattedDate
+        }
+
         $.ajax({
             url: `https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=f6e86c64f5744a28a326715cb9045d9b&Type=xml&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE=J10&SD_SCHUL_CODE=7751012&MLSV_YMD=${lunchdate}`, //데이터를 주고받을 파일 주소 입력,
             data: 'xml',
@@ -569,55 +517,55 @@
             }
             if (arroundrainpercent == 0 && !ifrain) {//주변 강수량이 없고 그 시간 강수량이 없으면
                 console.log('주변 강수량이 없고 그 시간 강수량이 없습니다 -체육 할 확률이 매우 높습니다')
-                pepercent.innerText = ' -체육 할 확률이 매우 높습니다(강수)'
+                pepercent.innerText = ' -체육 할 확률이 매우 높습니다'
             }
             else if (arroundrainpercent == 0 && ifrain) {//주변 강수량은 없지만 그 시간 강수량이 있으면
                 if (ifrain < 2) {
                     console.log('체육 시간 주변에 강수량이 없고 체육시간에는 아주 조금의 비가 예상됩니다 -체육할 확률이 높습니다')
-                    pepercent.innerText = ' -체육할 확률이 높습니다(강수)'
+                    pepercent.innerText = ' -체육할 확률이 높습니다'
                 }
                 else if (ifrain < 6) {
                     console.log('체육 시간 주변에 강수량이 없고 체육시간에는 조금의 비가 예상됩니다 -운이좋으면 체육할 수 있습니다')
-                    pepercent.innerText = ' -운이좋으면 체육할 수 있습니다(강수)'
+                    pepercent.innerText = ' -운이좋으면 체육할 수 있습니다'
                 }
                 else if (ifrain < 10) {
                     console.log('체육 시간 주변에 강수량이 없고 체육시간에는 비가 예상됩니다 - 체육하기 힘들수 있습니다')
-                    pepercent.innerText = ' - 체육하기 힘들수 있습니다(강수)'
+                    pepercent.innerText = ' - 체육하기 힘들수 있습니다'
                 }
                 else {
                     console.log('주변강수량은 없지만 체육 시간에는 비가 많이 내립니다 -체육은 힘들 수 있습니다')
-                    pepercent.innerText = ' -체육은 힘들 수 있습니다(강수)'
+                    pepercent.innerText = ' -체육은 힘들 수 있습니다'
                 }
             }
 
             else if (arroundrainpercent > 0 && !ifrain) {//주변 강수량은 있지만 그 시간 강수량이 없으면
                 console.log('체육시간 주변에는 비가 내리지만 체육시간에는 비가 안 내립니다 -운이 좋으면 체육 할 수 있습니다')
-                pepercent.innerText = ' -운이 좋으면 체육 할 수 있습니다(강수)'
+                pepercent.innerText = ' -운이 좋으면 체육 할 수 있습니다'
             }
 
             else if (arroundrainpercent > 0 && ifrain) {//주변 강수량이 있고 그 시간 강수량이  있으면
                 if (ifrain < 2) {
                     console.log('체육 시간 주변에 강수량이 있고 체육시간에는 아주 조금의 비가 예상됩니다 -체육 못할 확률이 있습니다')
-                    pepercent.innerText = ' -체육 못할 확률이 있습니다(강수)'
+                    pepercent.innerText = ' -체육 못할 확률이 있습니다'
                 }
                 else if (ifrain < 6) {
                     console.log('체육 시간 주변에 강수량이 있고 체육시간에는 조금의 비가 예상됩니다 -체육 못할 수 있습니다')
-                    pepercent.innerText = ' -체육 못할 수 있습니다(강수)'
+                    pepercent.innerText = ' -체육 못할 수 있습니다'
                 }
                 else if (ifrain < 10) {
                     console.log('체육 시간 주변에 강수량이 있고 체육시간에는 비가 예상됩니다 -체육을 못할 확률이 높습니다')
-                    pepercent.innerText = ' -체육을 못할 확률이 높습니다(강수)'
+                    pepercent.innerText = ' -체육을 못할 확률이 높습니다'
                 }
                 else {
                     console.log('주변강수량은 있고 체육 시간에는 비가 많이 내립니다 -체육을 못할 확률이 매우 높습니다')
-                    pepercent.innerText = ' -체육을 못할 확률이 매우 높습니다(강수)'
+                    pepercent.innerText = ' -체육을 못할 확률이 매우 높습니다'
                 }
             }
 
         }
-        for (var i = 0; i < currentSchedule.length; i++) {
-            if (currentSchedule[i] == '체육') {
-                rainpercentpe(approximatetimeschedule[currentSchedule.indexOf('체육')][0], approximatetimeschedule[currentSchedule.indexOf('체육')][1], rain)
+        for (var i = 0; i < Schedule.length; i++) {
+            if (Schedule[i] == '체육') {
+                rainpercentpe(approximatetimeschedule[Schedule.indexOf('체육')][0], approximatetimeschedule[Schedule.indexOf('체육')][1], rain)
             }
 
         }
