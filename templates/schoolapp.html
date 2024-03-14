@@ -265,8 +265,8 @@
             })
         })
         if (localStorage.getItem('class') == null || localStorage.getItem('name') == null || localStorage.getItem('grade') == null) {
-            var grade = prompt('몇 학년이신가요?')
-            var askclass = prompt('몇 반이신가요?')
+            var grade = prompt('몇 학년이신가요? (숫자로만)')
+            var askclass = prompt('몇 반이신가요?(숫자로만)')
             var username = prompt('이름이 무엇인가요?')
             localStorage.setItem('grade', grade)
             localStorage.setItem('name', username)
