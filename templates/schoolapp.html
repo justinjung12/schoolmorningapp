@@ -420,7 +420,9 @@
             data: 'json',
 
             success: function (result) {
+                console.log(result)
                 JSON.parse(result)['misTimetable'][1]['row'].forEach(r => {
+                    
                     Schedule.push(r['ITRT_CNTNT'])
                     let Div = document.createElement('div')
                     Div.innerText = r['ITRT_CNTNT']
